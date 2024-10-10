@@ -30,30 +30,25 @@ Required libraries: opencv-python, numpy, pytesseract, pandas, openpyxl, Pillow
 Installation Steps
 Clone the Repository:
 
-bash
-Copy code
+
 git clone <repository-url>
 cd <project-folder>
 Set Up Virtual Environment:
 
-bash
-Copy code
+
 python -m venv venv
 source venv/bin/activate  # For Windows use: venv\Scripts\activate
 Install Dependencies:
 
-bash
-Copy code
+
 pip install -r requirements.txt
 Run Migrations:
 
-bash
-Copy code
+
 python manage.py migrate
 Run the Django Development Server:
 
-bash
-Copy code
+
 python manage.py runserver
 Access the Application: Open a browser and go to http://127.0.0.1:8000/.
 
