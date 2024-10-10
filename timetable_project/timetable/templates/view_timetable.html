@@ -1,0 +1,101 @@
+<!-- timetable/templates/view_timetable.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Timetable</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h1>Timetable</h1>
+    
+    <h2>Main Timetable</h2>
+    <table>
+        <tr>
+            <th>Day</th>
+            <th>Time Slot</th>
+            <th>Subject</th>
+            <th>Faculty</th>
+            <th>Location</th>
+            <th>Batch</th>
+        </tr>
+        {% for entry in main_timetable %}
+        <tr>
+            <td>{{ entry.get_day_display }}</td>
+            <td>{{ entry.time_slot }}</td>
+            <td>{{ entry.subject.code }} - {{ entry.subject.name }}</td>
+            <td>{{ entry.faculty.short_name }}</td>
+            <td>{{ entry.location }}</td>
+            <td>{{ entry.batch }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Subjects</h2>
+    <table>
+        <tr>
+            <th>Code</th>
+            <th>Name</th>
+        </tr>
+        {% for subject in subjects %}
+        <tr>
+            <td>{{ subject.code }}</td>
+            <td>{{ subject.name }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Faculty</h2>
+    <table>
+        <tr>
+            <th>Short Name</th>
+            <th>Full Name</th>
+        </tr>
+        {% for f in faculty %}
+        <tr>
+            <td>{{ f.short_name }}</td>
+            <td>{{ f.full_name }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Quiz Timetable</h2>
+    <table>
+        <tr>
+            <th>Subject</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Invigilator 1</th>
+            <th>Invigilator 2</th>
+        </tr>
+        {% for quiz in quiz_timetable %}
+        <tr>
+            <td>{{ quiz.subject.code }} - {{ quiz.subject.name }}</td>
+            <td>{{ quiz.date }}</td>
+            <td>{{ quiz.time }}</td>
+            <td>{{ quiz.invigilator1.full_name }}</td>
+            <td>{{ quiz.invigilator2.full_name }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    {% if quiz_timetable.exists %}
+    <a href="{% url 'download_quiz_timetable' quiz_timetable.first.upload_session.id %}">Download Quiz Timetable</a>
+{% else %}
+    <p>No quiz timetable available for download.</p>
+{% endif %}
+
+</body>
+</html>
