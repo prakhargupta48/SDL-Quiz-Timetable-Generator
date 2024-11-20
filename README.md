@@ -34,32 +34,27 @@ Clone the Repository:
 git clone <repository-url>
 cd <project-folder>
 Set Up Virtual Environment:
-
-
 python -m venv venv
 source venv/bin/activate  # For Windows use: venv\Scripts\activate
+
 Install Dependencies:
-
-
 pip install -r requirements.txt
+
 Run Migrations:
-
-
 python manage.py migrate
+
 Run the Django Development Server:
-
-
 python manage.py runserver
 Access the Application: Open a browser and go to http://127.0.0.1:8000/.
 
 Usage
-Uploading Timetables:
 
+Uploading Timetables:
 Navigate to the upload page.
 Upload a class timetable image (in JPG/PNG format) containing the Main Timetable, Subject Code Table, and Faculty List.
 The system will process the image and store the extracted data.
-Generating the Quiz Timetable:
 
+Generating the Quiz Timetable:
 Once the timetable data is processed, navigate to the quiz scheduling page.
 Enter the required details (such as the quiz date).
 The system will generate a quiz timetable, ensuring that no more than 5 quizzes are scheduled per day, and each quiz is 15 minutes long.
